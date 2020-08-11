@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.retrofit.model.ListUserResponse;
 import com.example.retrofit.model.PhotoData;
 import com.example.retrofit.model.User;
 import com.example.retrofit.service.ApiClient;
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
+
 //        /*Create handle for the RetrofitInstance interface*/
 //        GetService service = ApiClient.getRetrofitInstance().create(GetService.class);
 //        Call<List<PhotoData>> call = service.getAllPhotos();
@@ -54,17 +57,17 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
         GetService service = ApiClient.getRetrofitInstance().create(GetService.class);
-        Call<List<User>> call = service.getAllUsers();
-        call.enqueue(new Callback<List<User>>() {
+        Call<ListUserResponse> call = service.getAllUsers();
+        call.enqueue(new Callback<ListUserResponse>() {
             @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+            public void onResponse(Call<ListUserResponse> call, Response<ListUserResponse> response) {
                 progressDialog.dismiss();
                 generateDataList(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
-                progressDialog.dismiss();
+            public void onFailure(Call<ListUserResponse> call, Throwable t) {
+                progressDialog.dismiss(); /* Ini namanya break point, cuma buat stop process ketika debugging, pakainya yang DEBUG, bukan RUN  */
                 Toast.makeText(MainActivity.this, "No Internet connection. Please try again!", Toast.LENGTH_SHORT).show();
 
             }
@@ -73,9 +76,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void generateDataList(List<User> userList) {
+    private void generateDataList(ListUserResponse response) {
         recyclerView = findViewById(R.id.customRecyclerView);
-        adapterUser = new CustomAdapterUser(this, userList);
+        adapterUser = new CustomAdapterUser(this, response.getData()); // Penting di sini harus diperhatikan
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapterUser);

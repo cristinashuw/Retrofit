@@ -17,10 +17,13 @@ import retrofit2.http.POST;
 
 public interface GetService {
 
-    @GET("/api/users?")
-    Call<List<User>> getAllUsers();
+    @GET("/api/users")
+    Call<ListUserResponse> getAllUsers();
+//     Sekarang kita dah sesuaikan kelas buat converter Gson'nya, diganti ke situ.
+    /* List<User> untuk response body dengan struktur JSON ===> [{User}, {User}, dst..]
+    * Coba lihat response aslinya */
 
 //    @FormUrlEncoded
 //    @POST("/api/users?")
-//    Call<User> doCreateUserWithField(@Field("firstName") String firstName, @Field("lastName") String lastName, @Field("email") String email);
+//    Call<User> doGetListResources(@Field("firstName") String firstName, @Field("lastName") String lastName, @Field("email") String email);
 }

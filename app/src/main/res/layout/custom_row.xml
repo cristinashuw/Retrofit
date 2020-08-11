@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     card_view:cardUseCompatPadding="true"
     >
-
+<!--    Layout ini untuk satu Row ya, jadi itu fungsinya adapter biar satu row bisa dipakai berulang kali -->
+<!-- COBA SEKARANG LAYOUT ITEM USER DIBIKIN DI SINI, Nanti disesuaikan di Adaptermu -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
