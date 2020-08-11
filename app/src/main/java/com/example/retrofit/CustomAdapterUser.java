@@ -8,21 +8,19 @@ import android.widget.ImageView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.retrofit.model.PhotoData;
 import com.example.retrofit.model.User;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
-
-    private List<PhotoData> dataList;
+public class CustomAdapterUser extends RecyclerView.Adapter<CustomAdapterUser.CustomViewHolder> {
+    private List<User> userList;
     private Context context;
 
-    public CustomAdapter(Context context, List<PhotoData> dataList){
+    public CustomAdapterUser(Context context, List<User> userList){
         this.context = context;
-        this.dataList = dataList;
+        this.userList = userList;
     }
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
@@ -47,11 +45,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
 
     @Override
-    public void onBindViewHolder(CustomViewHolder holder, int position) {
+    public void onBindViewHolder(CustomAdapterUser.CustomViewHolder holder, int position) {
 
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.downloader(new OkHttp3Downloader(context));
-        builder.build().load(dataList.get(position).getThumbnailUrl())
+        builder.build().load(userList.get(position).getEmail())
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_background)
                 .into(holder.coverImage);
@@ -60,6 +58,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     @Override
     public int getItemCount() {
-        return dataList.size();
+        return userList.size();
     }
 }

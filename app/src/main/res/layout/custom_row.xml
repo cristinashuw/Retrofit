@@ -22,7 +22,6 @@
             android:contentDescription="@string/app_name"
             android:layout_alignParentLeft="true" />
 
-
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

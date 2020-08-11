@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.retrofit.model.PhotoData;
+import com.example.retrofit.model.User;
 import com.example.retrofit.service.ApiClient;
 import com.example.retrofit.service.GetService;
 
@@ -20,7 +22,8 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-    private CustomAdapter adapter;
+//    private CustomAdapter adapter;
+    private CustomAdapterUser adapterUser;
     private RecyclerView recyclerView;
     ProgressDialog progressDialog;
 
@@ -33,32 +36,59 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.setMessage("Loading....");
         progressDialog.show();
 
-        /*Create handle for the RetrofitInstance interface*/
+//        /*Create handle for the RetrofitInstance interface*/
+//        GetService service = ApiClient.getRetrofitInstance().create(GetService.class);
+//        Call<List<PhotoData>> call = service.getAllPhotos();
+//        call.enqueue(new Callback<List<PhotoData>>() {
+//            @Override
+//            public void onResponse(Call<List<PhotoData>> call, Response<List<PhotoData>> response) {
+//                progressDialog.dismiss();
+//                generateDataList(response.body());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<PhotoData>> call, Throwable t) {
+//                progressDialog.dismiss();
+//                Toast.makeText(MainActivity.this, "No internet connection. Please try again!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
         GetService service = ApiClient.getRetrofitInstance().create(GetService.class);
-        Call<List<PhotoData>> call = service.getAllPhotos();
-        call.enqueue(new Callback<List<PhotoData>>() {
+        Call<List<User>> call = service.getAllUsers();
+        call.enqueue(new Callback<List<User>>() {
             @Override
-            public void onResponse(Call<List<PhotoData>> call, Response<List<PhotoData>> response) {
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 progressDialog.dismiss();
                 generateDataList(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<PhotoData>> call, Throwable t) {
+            public void onFailure(Call<List<User>> call, Throwable t) {
                 progressDialog.dismiss();
-                Toast.makeText(MainActivity.this, "Something went wrong...Please try later!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "No Internet connection. Please try again!", Toast.LENGTH_SHORT).show();
+
             }
         });
+
+
     }
 
-    /*Method to generate List of data using RecyclerView with custom adapter*/
-    private void generateDataList(List<PhotoData> photoList) {
+    private void generateDataList(List<User> userList) {
         recyclerView = findViewById(R.id.customRecyclerView);
-        adapter = new CustomAdapter(this,photoList);
+        adapterUser = new CustomAdapterUser(this, userList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapterUser);
     }
+
+//    /*Method to generate List of data using RecyclerView with custom adapter*/
+//    private void generateDataList(List<PhotoData> photoList) {
+//        recyclerView = findViewById(R.id.customRecyclerView);
+//        adapter = new CustomAdapter(this,photoList);
+//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setAdapter(adapter);
+//    }
 
 
 }
