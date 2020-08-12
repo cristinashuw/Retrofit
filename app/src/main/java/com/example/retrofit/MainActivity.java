@@ -1,5 +1,6 @@
 package com.example.retrofit;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     ProgressDialog progressDialog;
 
+    TextView responseText;
+    GetService apiInterface;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         progressDialog = new ProgressDialog(MainActivity.this);
         progressDialog.setMessage("Loading....");
         progressDialog.show();
+
+        responseText = findViewById(R.id.responseText);
+        apiInterface = ApiClient.getRetrofitInstance().create(GetService.class);
 
 
 //        /*Create handle for the RetrofitInstance interface*/
@@ -60,13 +67,14 @@ public class MainActivity extends AppCompatActivity {
         Call<ListUserResponse> call = service.getAllUsers();
         call.enqueue(new Callback<ListUserResponse>() {
             @Override
-            public void onResponse(Call<ListUserResponse> call, Response<ListUserResponse> response) {
+            public void onResponse(@NonNull Call<ListUserResponse> call, @NonNull Response<ListUserResponse> response) {
                 progressDialog.dismiss();
+                assert response.body() != null;
                 generateDataList(response.body());
             }
 
             @Override
-            public void onFailure(Call<ListUserResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<ListUserResponse> call, @NonNull Throwable t) {
                 progressDialog.dismiss(); /* Ini namanya break point, cuma buat stop process ketika debugging, pakainya yang DEBUG, bukan RUN  */
                 Toast.makeText(MainActivity.this, "No Internet connection. Please try again!", Toast.LENGTH_SHORT).show();
 

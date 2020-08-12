@@ -1,16 +1,21 @@
 package com.example.retrofit;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.retrofit.model.User;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import java.util.List;
 
@@ -25,18 +30,26 @@ public class CustomAdapterUser extends RecyclerView.Adapter<CustomAdapterUser.Cu
 
     class CustomViewHolder extends RecyclerView.ViewHolder {
 
+
         public final View mView;
 
-        private ImageView coverImage;
+        TextView fullName;
+//        TextView lastName;
+        TextView email;
+        private ImageView imageView;
 
         CustomViewHolder(View itemView) {
             super(itemView);
             mView = itemView;
 
-            coverImage = mView.findViewById(R.id.coverImage);
+            fullName = mView.findViewById(R.id.fullName);
+//            lastName = mView.findViewById(R.id.lastName);
+            email = mView.findViewById(R.id.email);
+            imageView = mView.findViewById(R.id.imageView);
         }
     }
 
+    @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
@@ -49,10 +62,13 @@ public class CustomAdapterUser extends RecyclerView.Adapter<CustomAdapterUser.Cu
 
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.downloader(new OkHttp3Downloader(context));
-        builder.build().load(userList.get(position).getEmail())
+        builder.build().load(userList.get(position).getAvatar())
                 .placeholder((R.drawable.ic_launcher_background))
                 .error(R.drawable.ic_launcher_background)
-                .into(holder.coverImage);
+                .into(holder.imageView);
+
+        holder.fullName.setText(userList.get(position).getFullName());
+        holder.email.setText(userList.get(position).getEmail());
 
     }
 

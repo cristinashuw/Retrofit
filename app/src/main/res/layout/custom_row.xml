@@ -1,27 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view_friend"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     card_view:cardUseCompatPadding="true"
     >
+
 <!--    Layout ini untuk satu Row ya, jadi itu fungsinya adapter biar satu row bisa dipakai berulang kali -->
 <!-- COBA SEKARANG LAYOUT ITEM USER DIBIKIN DI SINI, Nanti disesuaikan di Adaptermu -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="130dp">
+
+        <TextView
+            android:id="@+id/fullName"
+            android:layout_width="307dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="97dp"
+            android:layout_marginLeft="97dp"
+            android:layout_marginTop="9dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="307dp"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="97dp"
+            android:layout_marginLeft="97dp"
+            android:layout_marginTop="44dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerCrop" />
 
         <ImageView
-            android:id="@+id/coverImage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:scaleType="centerCrop"
-            android:contentDescription="@string/app_name"
-            android:layout_alignParentLeft="true" />
+            android:id="@+id/imageView"
+            android:layout_width="93dp"
+            android:layout_height="80dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="9dp"
+            android:layout_marginEnd="315dp"
+            android:layout_marginRight="315dp"
+            android:contentDescription="@string/image"
+            tools:srcCompat="@tools:sample/avatars" />
+
 
     </RelativeLayout>
 
