@@ -1,37 +1,24 @@
 package com.example.retrofit;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.retrofit.model.ListUserResponse;
-import com.example.retrofit.model.PhotoData;
-import com.example.retrofit.model.User;
 import com.example.retrofit.service.ApiClient;
 import com.example.retrofit.service.GetService;
 
-import java.util.List;
-
-import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
-//    private CustomAdapter adapter;
-    private CustomAdapterUser adapterUser;
-    private RecyclerView recyclerView;
     ProgressDialog progressDialog;
 
     TextView responseText;
@@ -58,17 +45,17 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(new DisposableObserver<ListUserResponse>() {
                     @Override
                     public void onNext(ListUserResponse listUserResponse) {
-
+                        generateDataList(listUserResponse);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Toast.makeText(MainActivity.this, "No internet connection. Please try again!", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onComplete() {
-
+                        progressDialog.dismiss();
                     }
                 });
 
@@ -112,8 +99,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void generateDataList(ListUserResponse response) {
-        recyclerView = findViewById(R.id.customRecyclerView);
-        adapterUser = new CustomAdapterUser(this, response.getData()); // Penting di sini harus diperhatikan
+        RecyclerView recyclerView = findViewById(R.id.customRecyclerView);
+        //    private CustomAdapter adapter;
+        CustomAdapterUser adapterUser = new CustomAdapterUser(this, response.getData()); // Penting di sini harus diperhatikan
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapterUser);
