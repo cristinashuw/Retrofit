@@ -6,6 +6,7 @@ import com.example.retrofit.model.*;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -21,7 +22,7 @@ import retrofit2.http.POST;
 public interface GetService {
 
     @GET("/api/users")
-    Single<ListUserResponse> getAllUsers();
+    Observable<ListUserResponse> getAllUsers();
 
 
 

@@ -3,23 +3,13 @@ package com.example.retrofit.service;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.example.retrofit.model.ListUserResponse;
 import com.example.retrofit.utils.PrefUtils;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableSingleObserver;
-import io.reactivex.schedulers.Schedulers;
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -78,5 +68,6 @@ public class ApiClient {
     }
 
 
-
+    public static void getRetrofitInstance() {
+    }
 }
