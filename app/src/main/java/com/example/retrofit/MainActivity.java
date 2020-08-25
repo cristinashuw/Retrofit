@@ -5,13 +5,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.retrofit.model.ListUserResponse;
 import com.example.retrofit.service.ApiClient;
 import com.example.retrofit.service.GetService;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
@@ -23,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
 
     TextView responseText;
     GetService apiInterface;
+
+    //    private RelativeLayout detailUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
                         progressDialog.dismiss();
                     }
                 });
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(view -> openCreateUser());
+
+//        RelativeLayout detailUser = findViewById(R.id.detailUser);
+//        detailUser.setOnClickListener(view -> openDetailUser());
 
 
 //        /*Create handle for the RetrofitInstance interface*/
@@ -98,8 +109,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void openCreateUser() {
+        Intent intent = new Intent(this, AddUser.class);
+        startActivity(intent);
+    }
+
+    private void openDetailUser() {
+        Intent intent = new Intent(this, DetailUser.class);
+        startActivity(intent);
+    }
+
+
     private void generateDataList(ListUserResponse response) {
-        RecyclerView recyclerView = findViewById(R.id.customRecyclerView);
+        RecyclerView recyclerView = findViewById(R.id.customRecycleView);
         //    private CustomAdapter adapter;
         CustomAdapterUser adapterUser = new CustomAdapterUser(this, response.getData()); // Penting di sini harus diperhatikan
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
@@ -116,6 +138,5 @@ public class MainActivity extends AppCompatActivity {
 //        recyclerView.setLayoutManager(layoutManager);
 //        recyclerView.setAdapter(adapter);
 //    }
-
 
 }

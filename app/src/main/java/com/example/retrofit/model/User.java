@@ -32,9 +32,19 @@ public class User {
         return firstName + " " + lastName;
     }
 
-
-
     public String getAvatar() {
         return avatar;
     }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+
+
+
 }

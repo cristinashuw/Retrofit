@@ -24,8 +24,6 @@ public interface GetService {
     @GET("/api/users")
     Observable<ListUserResponse> getAllUsers();
 
-
-
 //     Sekarang kita dah sesuaikan kelas buat converter Gson'nya, diganti ke situ.
     /* List<User> untuk response body dengan struktur JSON ===> [{User}, {User}, dst..]
     * Coba lihat response aslinya */

@@ -1,12 +1,10 @@
 package com.example.retrofit;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.retrofit.model.User;
 import com.squareup.picasso.OkHttp3Downloader;
 import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
 
 import java.util.List;
 
@@ -28,8 +25,7 @@ public class CustomAdapterUser extends RecyclerView.Adapter<CustomAdapterUser.Cu
         this.userList = userList;
     }
 
-    class CustomViewHolder extends RecyclerView.ViewHolder {
-
+    static class CustomViewHolder extends RecyclerView.ViewHolder {
 
         public final View mView;
 

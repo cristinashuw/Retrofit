@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Retrofit</string>
     <string name="image">TODO</string>
+    <string name="textview">TextView</string>
+    <string name="create_new_user">Create New User!</string>
+    <string name="submit">submit</string>
 </resources>

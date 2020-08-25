@@ -44,4 +44,6 @@ public class ListUserResponse {
     public List<User> getData() {
         return data;
     }
+
+    public List<User> postData() {return data;}
 }

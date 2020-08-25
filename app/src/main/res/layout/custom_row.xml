@@ -11,8 +11,11 @@
 <!--    Layout ini untuk satu Row ya, jadi itu fungsinya adapter biar satu row bisa dipakai berulang kali -->
 <!-- COBA SEKARANG LAYOUT ITEM USER DIBIKIN DI SINI, Nanti disesuaikan di Adaptermu -->
     <RelativeLayout
+        android:id="@+id/detailUser"
         android:layout_width="match_parent"
-        android:layout_height="130dp">
+        android:layout_height="130dp"
+        android:clickable="true"
+        android:focusable="true">
 
         <TextView
             android:id="@+id/fullName"
