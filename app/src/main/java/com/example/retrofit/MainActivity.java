@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
     TextView responseText;
     GetService apiInterface;
-
-    //    private RelativeLayout detailUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,9 +65,6 @@ public class MainActivity extends AppCompatActivity {
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(view -> openCreateUser());
-
-//        RelativeLayout detailUser = findViewById(R.id.detailUser);
-//        detailUser.setOnClickListener(view -> openDetailUser());
 
 
 //        /*Create handle for the RetrofitInstance interface*/
@@ -114,10 +110,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void openDetailUser() {
-        Intent intent = new Intent(this, DetailUser.class);
-        startActivity(intent);
-    }
+
 
 
     private void generateDataList(ListUserResponse response) {
