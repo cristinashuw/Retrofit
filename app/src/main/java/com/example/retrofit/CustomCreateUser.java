@@ -14,7 +14,7 @@ import com.example.retrofit.model.User;
 
 import java.util.List;
 
-public class CustomCreateUser extends RecyclerView.Adapter<CustomCreateUser.CustomViewHolder> {
+public class CustomCreateUser {
     private List<User> userList;
     private Context context;
 
@@ -22,7 +22,7 @@ public class CustomCreateUser extends RecyclerView.Adapter<CustomCreateUser.Cust
         this.context = context;
         this.userList = userList;
     }
-    static class CustomViewHolder extends RecyclerView.ViewHolder {
+    static class CustomViewHolder {
         public final View mView;
 
         TextView firstName;
@@ -30,7 +30,6 @@ public class CustomCreateUser extends RecyclerView.Adapter<CustomCreateUser.Cust
         TextView email;
 
         CustomViewHolder(View itemView) {
-            super(itemView);
             mView = itemView;
 
             firstName = mView.findViewById(R.id.firstName);
@@ -39,25 +38,12 @@ public class CustomCreateUser extends RecyclerView.Adapter<CustomCreateUser.Cust
         }
     }
 
-    @NonNull
-    @Override
-    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.activity_add_user, parent, false);
-        return new CustomViewHolder(view);
-    }
 
-    @Override
     public void onBindViewHolder(@NonNull CustomCreateUser.CustomViewHolder holder, int position) {
         holder.firstName.setText(userList.get(position).getFirstName());
         holder.lastName.setText(userList.get(position).getLastName());
         holder.email.setText(userList.get(position).getEmail());
 
-    }
-
-    @Override
-    public int getItemCount() {
-        return userList.size();
     }
 
 

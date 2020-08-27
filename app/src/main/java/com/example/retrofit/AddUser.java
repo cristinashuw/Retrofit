@@ -62,10 +62,7 @@ public class AddUser extends AppCompatActivity {
 
     private void generateDataList(ListUserResponse response) {
         RecyclerView recyclerView = findViewById(R.id.customAddUser);
-        CustomAdapterUser adapterUser = new CustomAdapterUser(this, response.getData()); // Penting di sini harus diperhatikan
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(AddUser.this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapterUser);
+        CustomAdapterUser adapterUser = new CustomAdapterUser(this, response.postData()); // Penting di sini harus diperhatikan
     }
 
 
