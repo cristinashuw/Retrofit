@@ -1,5 +1,7 @@
 package com.example.retrofit;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -8,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.retrofit.model.CreateUserResponse;
 import com.example.retrofit.model.ListUserResponse;
 import com.example.retrofit.service.ApiClient;
 import com.example.retrofit.service.GetService;
@@ -23,16 +26,22 @@ import io.reactivex.schedulers.Schedulers;
 import static com.example.retrofit.R.id.responseText2;
 
 public class AddUser extends AppCompatActivity {
+    ProgressDialog progressDialog;
+
     TextView responseText;
-    GetService apiInterface;
+    PostService apiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_user);
 
+        progressDialog = new ProgressDialog(AddUser.this);
+        progressDialog.setMessage("Loading....");
+        progressDialog.show();
+
         responseText = findViewById(responseText2);
-        apiInterface = ApiClient.getRetrofitInstance(getApplication()).create(GetService.class);
+        apiInterface = ApiClient.getRetrofitInstance(getApplication()).create(PostService.class);
 
         PostService service = ApiClient.getRetrofitInstance(getApplicationContext())
                 .create(PostService.class);
@@ -40,10 +49,11 @@ public class AddUser extends AppCompatActivity {
         service.postAllUsers()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new DisposableObserver<ListUserResponse>() {
+                .subscribe(new DisposableObserver<CreateUserResponse>() {
+
                     @Override
-                    public void onNext(ListUserResponse listUserResponse) {
-                        generateDataList(listUserResponse);
+                    public void onNext(CreateUserResponse createUserResponse) {
+                        generateDataList(createUserResponse);
                     }
 
                     @Override
@@ -53,14 +63,14 @@ public class AddUser extends AppCompatActivity {
 
                     @Override
                     public void onComplete() {
-
+                        progressDialog.dismiss();
                     }
                 });
 
 
     }
 
-    private void generateDataList(ListUserResponse response) {
+    private void generateDataList(CreateUserResponse response) {
         RecyclerView recyclerView = findViewById(R.id.customAddUser);
         CustomAdapterUser adapterUser = new CustomAdapterUser(this, response.postData()); // Penting di sini harus diperhatikan
     }
