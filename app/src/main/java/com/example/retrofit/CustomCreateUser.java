@@ -1,48 +1,42 @@
 package com.example.retrofit;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.retrofit.model.CreateUser;
 import com.example.retrofit.model.User;
 
 import java.util.List;
 
 public class CustomCreateUser {
-    private List<User> userList;
+    private List<CreateUser> userList;
     private Context context;
 
-    public CustomCreateUser(Context context, List<User> userList){
+    public CustomCreateUser(Context context, List<CreateUser> userList){
         this.context = context;
         this.userList = userList;
     }
     static class CustomViewHolder {
         public final View mView;
 
-        TextView firstName;
-        TextView lastName;
-        TextView email;
+        TextView name;
+        TextView job;
 
         CustomViewHolder(View itemView) {
             mView = itemView;
 
-            firstName = mView.findViewById(R.id.firstName);
-            lastName = mView.findViewById(R.id.lastName);
-            email = mView.findViewById(R.id.email);
+            name = mView.findViewById(R.id.name);
+            job = mView.findViewById(R.id.job);
         }
     }
 
 
     public void onBindViewHolder(@NonNull CustomCreateUser.CustomViewHolder holder, int position) {
-        holder.firstName.setText(userList.get(position).getFirstName());
-        holder.lastName.setText(userList.get(position).getLastName());
-        holder.email.setText(userList.get(position).getEmail());
+        holder.name.setText(userList.get(position).getName());
+        holder.job.setText(userList.get(position).getJob());
 
     }
 
