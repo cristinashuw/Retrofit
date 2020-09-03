@@ -39,7 +39,7 @@ public class CustomAdapterUser extends RecyclerView.Adapter<CustomAdapterUser.Cu
 //        TextView lastName;
         TextView email;
         private ImageView imageView;
-        private Button DetailUser;
+        private Button buttonDetailUser;
 
         CustomViewHolder(View itemView) {
             super(itemView);
@@ -49,6 +49,8 @@ public class CustomAdapterUser extends RecyclerView.Adapter<CustomAdapterUser.Cu
 //            lastName = mView.findViewById(R.id.lastName);
             email = mView.findViewById(R.id.email);
             imageView = mView.findViewById(R.id.imageView);
+            buttonDetailUser = mView.findViewById(R.id.detailUserButton);
+
 
         }
         
@@ -82,6 +84,8 @@ public class CustomAdapterUser extends RecyclerView.Adapter<CustomAdapterUser.Cu
 
         holder.fullName.setText(userList.get(position).getFullName());
         holder.email.setText(userList.get(position).getEmail());
+        //        this istodo
+        holder.buttonDetailUser.setOnClickListener(null);
 
     }
 

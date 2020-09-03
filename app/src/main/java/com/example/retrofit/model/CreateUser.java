@@ -7,10 +7,10 @@ public class CreateUser {
 
         @SerializedName("name")
         @Expose
-        public String name;
+        private String name;
         @SerializedName("job")
         @Expose
-        public String job;
+        private String job;
 
         public String getName() {
             return name;
@@ -20,4 +20,11 @@ public class CreateUser {
             return job;
         }
 
+        public void setName(String name) {
+                this.name = name;
+        }
+
+        public void setJob(String job) {
+                this.job = job;
+        }
 }

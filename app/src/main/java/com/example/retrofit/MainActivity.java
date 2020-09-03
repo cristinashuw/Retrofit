@@ -110,6 +110,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void getDetailUser(long id) {
+        Intent intent = new Intent(this, DetailUser.class);
+        startActivity(intent);
+    }
+
+
 
 
 

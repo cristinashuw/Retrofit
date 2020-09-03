@@ -14,11 +14,8 @@ import retrofit2.http.POST;
 
 public interface PostService {
     @POST(value = "/api/users")
-    Observable<CreateUserResponse> postAllUsers();
+    Observable<CreateUserResponse> postAllUsers(@Body CreateUser createUser);
 
-
-
-//
 //    @POST("/api/users")
 //    Call<User> doGetListResources(@Field("firstName") String firstName, @Field("lastName") String lastName, @Field("email") String email);
 }
