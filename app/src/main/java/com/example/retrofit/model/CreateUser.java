@@ -12,14 +12,6 @@ public class CreateUser {
         @Expose
         private String job;
 
-        public String getName() {
-            return name;
-        }
-
-        public String getJob() {
-            return job;
-        }
-
         public void setName(String name) {
                 this.name = name;
         }

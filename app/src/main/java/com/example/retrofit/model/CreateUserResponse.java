@@ -18,12 +18,12 @@ public class CreateUserResponse {
         @SerializedName("createdAt")
         @Expose
         public String createdAt;
-        private List<User> data = null;
 
 
-    public String getName() {
+        public String getName() {
             return name;
         }
+
         public String getJob() {
             return job;
         }
@@ -34,5 +34,4 @@ public class CreateUserResponse {
             return createdAt;
         }
 
-        public List<User> postData() {return data;}
 }
