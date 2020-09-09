@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.retrofit.model.ListUserResponse;
 import com.example.retrofit.service.ApiClient;
-import com.example.retrofit.service.GetService;
+import com.example.retrofit.service.UserAPI;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressDialog progressDialog;
 
     TextView responseText;
-    GetService apiInterface;
+    UserAPI apiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.show();
 
         responseText = findViewById(R.id.responseText);
-        apiInterface = ApiClient.getRetrofitInstance(getApplication()).create(GetService.class);
+        apiInterface = ApiClient.getRetrofitInstance(getApplication()).create(UserAPI.class);
 
-        GetService service = ApiClient.getRetrofitInstance(getApplicationContext())
-                .create(GetService.class);
+        UserAPI service = ApiClient.getRetrofitInstance(getApplicationContext())
+                .create(UserAPI.class);
 
         service.getAllUsers()
                 .subscribeOn(Schedulers.io())
@@ -64,11 +64,11 @@ public class MainActivity extends AppCompatActivity {
                 });
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(view -> openCreateUser());
+        fab.setOnClickListener((View view) -> openCreateUser());
 
 
 //        /*Create handle for the RetrofitInstance interface*/
-//        GetService service = ApiClient.getRetrofitInstance().create(GetService.class);
+//        UserAPI service = ApiClient.getRetrofitInstance().create(UserAPI.class);
 //        Call<List<PhotoData>> call = service.getAllPhotos();
 //        call.enqueue(new Callback<List<PhotoData>>() {
 //            @Override
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-//        GetService service = ApiClient.getRetrofitInstance(getApplicationContext()).create(GetService.class);
+//        UserAPI service = ApiClient.getRetrofitInstance(getApplicationContext()).create(UserAPI.class);
 //        Single<ListUserResponse> call = service.getAllUsers();
 //        call.enqueue(new Callback<ListUserResponse>() {
 //            @Override
@@ -106,23 +106,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openCreateUser() {
-        Intent intent = new Intent(this, AddUser.class);
+        Intent intent = new Intent(this, AddUserActivity.class);
         startActivity(intent);
     }
 
     private void getDetailUser(long id) {
-        Intent intent = new Intent(this, DetailUser.class);
+        Intent intent = new Intent(this, DetailUserActivity.class);
+        intent.putExtra(DetailUserActivity.EXTRA_UID, id);
         startActivity(intent);
     }
-
-
-
-
 
     private void generateDataList(ListUserResponse response) {
         RecyclerView recyclerView = findViewById(R.id.customRecycleView);
         //    private CustomAdapter adapter;
-        CustomAdapterUser adapterUser = new CustomAdapterUser(this, response.getData()); // Penting di sini harus diperhatikan
+        CustomAdapterUser adapterUser = new CustomAdapterUser(this, response.getData(), (position, user) -> {
+            Log.d("Get Clicked User ID", user.getId() +"");
+            // todo: Open DetailUserActivity and pass user id
+            getDetailUser(user.getId());
+
+        }); // Penting di sini harus diperhatikan
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(MainActivity.this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapterUser);
