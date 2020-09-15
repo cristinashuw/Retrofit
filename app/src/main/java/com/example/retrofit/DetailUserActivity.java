@@ -1,7 +1,9 @@
 package com.example.retrofit;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -10,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.retrofit.model.DetailUserResponse;
 import com.example.retrofit.service.ApiClient;
 import com.example.retrofit.service.UserAPI;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
@@ -77,6 +80,8 @@ public class DetailUserActivity extends AppCompatActivity {
         vLastName.setText(lastName);
         vEmail.setText(email);
     }
+
+
 
 
 }

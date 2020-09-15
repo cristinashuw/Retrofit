@@ -8,4 +8,8 @@
     <string name="name">Name</string>
     <string name="job">Job</string>
     <string name="detail_user">Detail User</string>
+    <string name="edit_new_user">Edit new user</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="email">Email</string>
 </resources>

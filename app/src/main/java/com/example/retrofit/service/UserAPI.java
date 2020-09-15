@@ -14,6 +14,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 //public interface UserAPI {
@@ -29,11 +30,11 @@ public interface UserAPI {
     @GET("/api/users/{id}")
     Observable<DetailUserResponse> getSingleUser(@Path("id") long id);
 
-    @GET("/api/users/{id}")
-    Observable<DetailUserResponse> getSingleUser(@Path("id") String id);
-
     @POST(value = "/api/users")
     Observable<CreateUserResponse> createUser(@Body CreateUser createUser);
+
+    @PUT("/api/users/{id}")
+    Observable<UpdateUserResponse> updateUser(@Path("id") long id);
 
 
 //     Sekarang kita dah sesuaikan kelas buat converter Gson'nya, diganti ke situ.
