@@ -35,7 +35,7 @@ public class AddUserActivity extends AppCompatActivity {
         responseText = findViewById(responseText2);
         apiInterface = ApiClient.getRetrofitInstance(getApplication()).create(UserAPI.class);
 
-        Button submitButton = findViewById(R.id.submitButton);
+        Button submitButton = findViewById(R.id.addSubmitButton);
         submitButton.setOnClickListener((View view) -> submitButton());
     }
 
@@ -44,10 +44,10 @@ public class AddUserActivity extends AppCompatActivity {
         UserAPI service = ApiClient.getRetrofitInstance(getApplicationContext())
                 .create(UserAPI.class);
 
-        EditText nameField = findViewById(R.id.name);
+        EditText nameField = findViewById(R.id.addName);
         String name = nameField.getText().toString();
 
-        EditText jobField = findViewById(R.id.job);
+        EditText jobField = findViewById(R.id.addJob);
         String job = jobField.getText().toString();
 
         CreateUser createUser = new CreateUser();
