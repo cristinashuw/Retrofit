@@ -63,6 +63,14 @@ public class DetailUserActivity extends AppCompatActivity {
                     }
                 });
 
+        FloatingActionButton editButton = findViewById(R.id.editButton);
+        editButton.setOnClickListener((View view) -> openUpdateUser());
+
+    }
+
+    private void openUpdateUser() {
+        Intent intent = new Intent(this, UpdateUserActivity.class);
+        startActivity(intent);
     }
 
     private void showUserDetail(DetailUserResponse response) {
