@@ -1,7 +1,6 @@
 package com.example.retrofit;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,20 +17,15 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import static android.service.controls.ControlsProviderService.TAG;
-
 public class CustomAdapterUser extends RecyclerView.Adapter<CustomAdapterUser.CustomViewHolder> {
     private List<User> userList;
     private Context context;
     private ClickListener clickListener;
 
-    public CustomAdapterUser(Context context, List<User> userList, ClickListener listener){
+    public CustomAdapterUser(Context context, List<User> userList, ClickListener listener) {
         this.context = context;
         this.userList = userList;
         this.clickListener = listener;
-    }
-
-    public CustomAdapterUser(Context context) {
     }
 
     static class CustomViewHolder extends RecyclerView.ViewHolder {
@@ -57,8 +51,8 @@ public class CustomAdapterUser extends RecyclerView.Adapter<CustomAdapterUser.Cu
     }
 
     public interface ClickListener {
-            void onItemClick(int position, User user);
-        }
+        void onItemClick(int position, User user);
+    }
 
 //    private void openDetailUser() {
 //        Intent intent = new Intent(this, DetailUserActivity.class);

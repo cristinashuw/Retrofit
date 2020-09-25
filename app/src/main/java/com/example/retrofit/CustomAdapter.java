@@ -1,4 +1,4 @@
-package com.example.retrofit;
+//package com.example.retrofit;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,7 +16,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 //
 //public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
-    public class CustomAdapter {}
+//    public class CustomAdapter {}
 //    private List<PhotoData> dataList;
 //    private Context context;
 //

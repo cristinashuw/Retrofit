@@ -64,12 +64,13 @@ public class DetailUserActivity extends AppCompatActivity {
                 });
 
         FloatingActionButton editButton = findViewById(R.id.editButton);
-        editButton.setOnClickListener((View view) -> openUpdateUser());
+        editButton.setOnClickListener((View view) -> openUpdateUser(uid));
 
     }
 
-    private void openUpdateUser() {
+    private void openUpdateUser(long id) {
         Intent intent = new Intent(this, UpdateUserActivity.class);
+        intent.putExtra(UpdateUserActivity.EXTRA_UID, id);
         startActivity(intent);
     }
 
@@ -88,9 +89,6 @@ public class DetailUserActivity extends AppCompatActivity {
         vLastName.setText(lastName);
         vEmail.setText(email);
     }
-
-
-
 
 }
 

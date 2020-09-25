@@ -34,7 +34,7 @@ public interface UserAPI {
     Observable<CreateUserResponse> createUser(@Body CreateUser createUser);
 
     @PUT("/api/users/{id}")
-    Observable<UpdateUserResponse> updateUser(@Path("id") long id);
+    Observable<UpdateUserResponse> updateUser(@Path("id") long id, @Body UpdateUser updateUser);
 
 
 //     Sekarang kita dah sesuaikan kelas buat converter Gson'nya, diganti ke situ.
